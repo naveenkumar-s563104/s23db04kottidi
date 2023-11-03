@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  p Nothwest is a beautiful university
+  button(type="button", class="btn btn-secondary" onclick="goFaster()") Press me 
+
+  div(id="faster") <i>Incresase the speed.</i>
+  br
+  a(href="dress") Link to Dress
+  script.
+    let mph =20;
+    let change =1;
+    function goFaster(){
+      mph=change+mph;
+      change =  change+1;
+      let result = document.getElementById("faster");
+      result.innerHTML = `MPH ${mph} with change ${change}`
+    } 
