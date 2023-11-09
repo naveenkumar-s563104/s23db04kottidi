@@ -3,30 +3,16 @@ extends layout
 block content
   h1= title
   -
-    let results = [
-      {
-        "dress_brand": "Jockey",
-        "dress_size": "XL",
-        "dress_cost": 25
-      },
-      {
-        "dress_brand": "American Eagle",
-        "dress_size": "XXL",
-        "dress_cost": 35
-      },
-      {
-        "dress_brand": "Nike",
-        "dress_size": "XL",
-        "dress_cost": 30
-      },                   
-    ]
+    let items  = results
   div(class= "container-fluid")
     div(class = "row")
-      each item,index in results
+      each item,index in items
         div(class= "col-sm-2", onclick=`buy(${index})`) Brand: #{item.dress_brand}
         div(class= "col-sm-2", onclick=`buy(${index})`) Size: #{item.dress_size}
         div(class= "col-sm-2", onclick=`buy(${index})`) Cost: #{item.dress_cost}
-
+        br
+        br
+        
   script.
     function buy(itemNum){
       alert(`You purchased item ${itemNum+1}`)
