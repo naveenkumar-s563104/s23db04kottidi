@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+.dressAttr {
+  background-color: rgb(219, 255, 127);
+  width: 100px;
+  
+  }

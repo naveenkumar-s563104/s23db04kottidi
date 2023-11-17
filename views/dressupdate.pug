@@ -1,0 +1,50 @@
+extends layout
+block content 
+    h1= title
+ 
+    if (toShow == null)
+        h2 No instance to update
+   
+    else
+        - let dressid = toShow._id
+        - let dress_brand = toShow.dress_brand
+        - let dress_size = toShow.dress_size
+        - let dress_cost = toShow.dress_cost
+       
+        div.row(class='mb-2')
+            div.mr-1 ID is
+            div #{dressid}
+       
+        - let actionid = "/resource/dress/" + dressid
+       
+        form(id='DressForm', action= actionid, method="PUT")
+            div.form-group
+                label.dressAttr(for='dress_brand') Dress Brand
+                input#dress_brand(type='text', name='dress_brand',value= dress_brand)
+            div.form-group
+                label.dressAttr(for='dress_size') Dress Size
+                input#dress_size(type='text', name='dress_size',value= dress_size)
+            div.form-group
+                label.dressAttr(for='dress_cost') Dress cost
+                input#dress_cost(type='number', name='dress_cost',value= dress_cost)
+                br
+                br
+            input(type="submit")
+           
+            script.
+                document.forms['DressForm'].addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    // TODO do something here to show user that form is being submitted
+                    fetch(event.target.action, {
+                        method: 'PUT',
+                        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+                    }).then((resp) => {
+                        return resp.json(); // or resp.text() or whatever the server sends
+                    }).then((body) => {
+                        alert("Update succeded")
+                        // TODO handle body
+                    }).catch((error) => {
+                        // TODO handle error
+                        alert("Update failed " + error )
+                    });
+                });
